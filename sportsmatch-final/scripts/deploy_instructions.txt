@@ -1,0 +1,23 @@
+Deployment instructions (summary)
+1. Install Supabase CLI and login:
+   supabase login
+2. Link project:
+   supabase link --project-ref your-project-ref
+3. Apply migrations (from repo root):
+   supabase db push --file supabase/migrations/001_initial_schema.sql
+4. Set secrets:
+   supabase secrets set SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=...
+   supabase secrets set STRIPE_SECRET_KEY=... STRIPE_WEBHOOK_SECRET=...
+   supabase secrets set RESEND_API_KEY=... OPENWEATHER_API_KEY=...
+5. Deploy functions:
+   supabase functions deploy matchmaking --no-verify-jwt
+   supabase functions deploy payments --no-verify-jwt
+   supabase functions deploy complete_match --no-verify-jwt
+   supabase functions deploy match_reminder --no-verify-jwt
+   supabase functions deploy expire_matches --no-verify-jwt
+   supabase functions deploy award_badges --no-verify-jwt
+   supabase functions deploy realtime_notifier --no-verify-jwt
+6. Configure scheduled functions in Supabase dashboard:
+   - expire_matches: daily
+   - match_reminder: hourly
+7. Test flows: matchmaking, checkout, webhook, match completion, reminders.

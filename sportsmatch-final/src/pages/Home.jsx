@@ -1,0 +1,1 @@
+<div class='container'><h1>SportsMatch</h1><p>Welcome</p><a href='/find-match'>Find Match</a></div>
